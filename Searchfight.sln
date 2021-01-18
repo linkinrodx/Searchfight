@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Searchfight", "Searchfight.App\Searchfight.csproj", "{7177458A-1C02-48A8-B5AA-62A2F70B4057}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Searchfight.Proxy", "Searchfight.Proxy\Searchfight.Proxy.csproj", "{2EDF7C95-CC9D-49BE-8375-077E5A778832}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7177458A-1C02-48A8-B5AA-62A2F70B4057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7177458A-1C02-48A8-B5AA-62A2F70B4057}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7177458A-1C02-48A8-B5AA-62A2F70B4057}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7177458A-1C02-48A8-B5AA-62A2F70B4057}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EDF7C95-CC9D-49BE-8375-077E5A778832}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EDF7C95-CC9D-49BE-8375-077E5A778832}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EDF7C95-CC9D-49BE-8375-077E5A778832}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EDF7C95-CC9D-49BE-8375-077E5A778832}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {767FECFB-5BB6-4D4C-A5B8-6EDFF43B1881}
+	EndGlobalSection
+EndGlobal
