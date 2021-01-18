@@ -1,4 +1,4 @@
-# Searchfight
+# Searchfight App
 
 Searchfight is an application that accepts parameters and returns the amount of search results found in different search engines. Can also display other information.
 
