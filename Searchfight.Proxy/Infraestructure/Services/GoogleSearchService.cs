@@ -11,7 +11,7 @@ namespace Searchfight.Proxy.Services
     public class GoogleSearchService : IGoogleSearchService
     {
         readonly HttpClient _Client;
-        readonly string name = "";
+        readonly string name = "Google";
         readonly string GoogleKey = "";
         readonly string GoogleCX = "";
         readonly string GoogleUri = "https://www.googleapis.com/customsearch/v1?key={0}&cx={1}&q={2}";

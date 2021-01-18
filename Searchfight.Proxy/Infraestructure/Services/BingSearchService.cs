@@ -10,7 +10,7 @@ namespace Searchfight.Proxy.Services
     public class BingSearchService : IBingSearchService
     {
         HttpClient _Client;
-        readonly string name = "";
+        readonly string name = "Bing";
         readonly string BingKey = "";
         readonly string BingUri = "https://api.bing.microsoft.com/v7.0/search?q={0}";
 
