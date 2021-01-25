@@ -5,26 +5,31 @@ using System.Threading.Tasks;
 
 using System.Net.Http;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Configuration;
 
 namespace Searchfight.Proxy.Services
 {
     public class GoogleSearchService : IGoogleSearchService
     {
         readonly HttpClient _Client;
-        readonly string name = "";
-        readonly string GoogleKey = "";
-        readonly string GoogleCX = "";
-        readonly string GoogleUri = "https://www.googleapis.com/customsearch/v1?key={0}&cx={1}&q={2}";
+        readonly string Name;
+        readonly string Key;
+        readonly string CX;
+        readonly string Uri;
 
-        public GoogleSearchService()
+        public GoogleSearchService(IConfiguration configuration)
         {
             _Client = new HttpClient();
+            Name = configuration.GetSection("Providers:Google:Name").Value;
+            Key = configuration.GetSection("Providers:Google:Key").Value;
+            CX = configuration.GetSection("Providers:Google:CX").Value;
+            Uri = configuration.GetSection("Providers:Google:Uri").Value;
         }
 
         public async Task<GoogleSearchResponse> Search(string query)
         {
             var result = new GoogleSearchResponse();
-            var endpoint = string.Format(GoogleUri, GoogleKey, GoogleCX, query);
+            var endpoint = string.Format(Uri, Key, CX, query);
 
             try
             {
@@ -47,7 +52,7 @@ namespace Searchfight.Proxy.Services
 
         public string ProviderName()
         {
-            return name;
+            return Name;
         }
     }
 }

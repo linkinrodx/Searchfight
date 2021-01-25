@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Searchfight.Proxy.Contracts;
 using Searchfight.Proxy.Models;
 using System;
@@ -9,23 +10,28 @@ namespace Searchfight.Proxy.Services
 {
     public class BingSearchService : IBingSearchService
     {
-        HttpClient _Client;
-        readonly string name = "";
-        readonly string BingKey = "";
-        readonly string BingUri = "https://api.bing.microsoft.com/v7.0/search?q={0}";
+        readonly HttpClient _Client;
 
-        public BingSearchService()
+        readonly string Name;
+        readonly string Key;
+        readonly string Uri;
+
+        public BingSearchService(IConfiguration configuration)
         {
+            Name = configuration.GetSection("Providers:Bing:Name").Value;
+            Key = configuration.GetSection("Providers:Bing:Key").Value;
+            Uri = configuration.GetSection("Providers:Bing:Uri").Value;
+
             _Client = new HttpClient()
             {
-                DefaultRequestHeaders = { { "Ocp-Apim-Subscription-Key", BingKey } }
+                DefaultRequestHeaders = { { "Ocp-Apim-Subscription-Key", Key } }
             };
         }
 
         public async Task<BingSearchResponse> Search(string query)
         {
             var result = new BingSearchResponse();
-            var endpoint = string.Format(BingUri, query);
+            var endpoint = string.Format(Uri, query);
 
             try
             {
@@ -48,7 +54,7 @@ namespace Searchfight.Proxy.Services
 
         public string ProviderName()
         {
-            return name;
+            return Name;
         }
     }
 }

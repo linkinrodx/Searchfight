@@ -20,7 +20,9 @@ namespace Searchfight.App
         {
             try
             {
-                var provider = ServiceCollection();
+                args = new string[] { ".net", "java"};
+
+                var provider = ServiceCollection(ConfigurationManager.AppSetting);
 
                 var NewArgs = new List<string>();
 
@@ -44,28 +46,6 @@ namespace Searchfight.App
                 Console.WriteLine(message);
             }
         }
-
-        #region Config
-        static ServiceProvider ServiceCollection()
-        {
-            var services = new ServiceCollection();
-
-            services.AddSingleton<IGoogleSearchService, GoogleSearchService>();
-            services.AddSingleton<IBingSearchService, BingSearchService>();
-
-            return services.BuildServiceProvider();
-        }
-
-        static IConfigurationRoot ConfigurationBuilder()
-        {
-            var configuration = new ConfigurationBuilder();
-
-            configuration.SetBasePath(Directory.GetCurrentDirectory());
-            configuration.AddJsonFile(path: "appsettings.json", optional: false, reloadOnChange: true);
-
-            return configuration.Build();
-        }
-        #endregion
 
         #region Methods
         static async Task Search(ServiceProvider provider, List<string> NewArgs)
@@ -133,6 +113,31 @@ namespace Searchfight.App
             builder1.Append(Functions.SumByProvider(ListQuery));
 
             Console.WriteLine(builder1.ToString());
+        }
+        #endregion
+
+        #region Config
+        static ServiceProvider ServiceCollection(IConfiguration Configuration)
+        {
+            var services = new ServiceCollection();
+
+            services.AddSingleton<IGoogleSearchService, GoogleSearchService>();
+            services.AddSingleton<IBingSearchService, BingSearchService>();
+            services.AddSingleton(Configuration);
+
+            return services.BuildServiceProvider();
+        }
+
+        static class ConfigurationManager
+        {
+            public static IConfiguration AppSetting { get; }
+            static ConfigurationManager()
+            {
+                AppSetting = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddJsonFile("appsettings.json")
+                        .Build();
+            }
         }
         #endregion
     }
